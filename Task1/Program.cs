@@ -1,21 +1,16 @@
 ﻿using System.Drawing;
+namespace Task1;
 
-namespace Task1
+static class Program
 {
-    static class Program
-    {
-        static IEnumerable<string> GetColors(string[] args) =>
-            from color in
-                from arg in args
-                select arg is [(>= 'a' and <= 'h') or (>= 'A' and <= 'H'), >= '1' and <= '8'] ?
-                    ((arg[0] ^ arg[1]) & 1) == 0 ? Color.Black : Color.White :
-                    throw new ArgumentOutOfRangeException(arg)
-            select color.Name;
+    static string GetColor(string arg) =>
+        arg is [_, >= '1' and <= '8'] && char.ToLower(arg[0]) is >= 'a' and <= 'h' ?
+            (((arg[0] ^ arg[1]) & 1) == 0 ? Color.Black : Color.White).Name :
+            throw new ArgumentOutOfRangeException(arg);
 
-        static void Main(string[] args)
-        {
-            foreach (var color in GetColors(args))
-                Console.WriteLine(color);
-        }
+    static void Main(string[] args)
+    {
+        foreach (var color in args.Select(GetColor))
+            Console.WriteLine(color);
     }
 }
