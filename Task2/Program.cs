@@ -1,6 +1,6 @@
 ﻿namespace Task2
 {
-    internal class Program
+    static class Program
     {
         static IEnumerable<string> FindSubsequences(string input) =>
             from i in Enumerable.Range(0, input.Length - 1)
@@ -9,13 +9,8 @@
 
         static void Main(string[] args)
         {
-            foreach (var x in args)
-            {
-                foreach (var result in FindSubsequences(x))
-                    Console.Write($"{result} ");
-
-                Console.WriteLine();
-            }
+            foreach (var arg in args)
+                Console.WriteLine(string.Join(", ", FindSubsequences(arg)));
         }
     }
 }
