@@ -2,12 +2,10 @@
 {
     internal class Program
     {
-        static IEnumerable<string> FindSubsequences(string input)
-        {
-            for (int i = 0; i < input.Length; ++i)
-                for (int j = i + 1; j < input.Length && input[j] != input[j - 1]; ++j)
-                    yield return input[i..(j + 1)];
-        }
+        static IEnumerable<string> FindSubsequences(string input) =>
+            from i in Enumerable.Range(0, input.Length - 1)
+            from j in Enumerable.Range(i + 1, input.Length - i - 1).TakeWhile(x => input[x] != input[x - 1])
+            select input[i..(j + 1)];
 
         static void Main(string[] args)
         {
