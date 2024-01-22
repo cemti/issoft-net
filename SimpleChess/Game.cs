@@ -25,10 +25,10 @@ namespace SimpleChess
 
             bool MovePiece(Point from, Point to, Player player)
             {
-                if (CurrentPlayer.Equals(player) && Board.MovePiece(from, to))
+                if (CurrentPlayer.Equals(player))
                 {
                     _parity ^= true;
-                    return true;
+                    return Board.MovePiece(from, to);
                 }
 
                 return false;
