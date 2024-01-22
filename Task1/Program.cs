@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 namespace Task1;
 
 static class Program
